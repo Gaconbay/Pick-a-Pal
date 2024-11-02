@@ -35,17 +35,19 @@ struct ContentView: View {
             List{
                 ForEach(names, id: \.description) { name in
                     Text(name)
+                    
                 }
             }
             .clipShape(RoundedRectangle(cornerRadius: 16))
-            
+        
             
             TextField("Add Name", text: $nameToAdd) // '$' symbol represents a binding to a variable
                 .autocorrectionDisabled()
                 .onSubmit{
-                    if !nameToAdd.isEmpty {
+                    if !nameToAdd.isEmpty && !names.contains(nameToAdd) {
                         names.append(nameToAdd)
                         nameToAdd = ""
+                            .trimmingCharacters(in:.decomposables)
                     }
                 }
             
@@ -72,9 +74,10 @@ struct ContentView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
             }
+            
             .buttonStyle(.borderedProminent)
             .font(.title2)
-            
+    
             //This initializer for Button has two closures — one for the action and one for the label. The action closure contains imperative code, and the label closure contains declarative view code.
         }
         .padding()
