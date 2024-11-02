@@ -34,9 +34,9 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             
             List{
-                ForEach(names, id: \.description) { name in
+                ForEach(Array(Set(names)), id: \.description) { name in
                     Text(name)
-                    
+                    // Use Array(Set(...)) to remove duplicates names in the list
                 }
             }
             .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -92,7 +92,7 @@ struct ContentView: View {
                     .buttonStyle(.borderedProminent)
                     .font(.title3)
                 Button("Load List") {
-                    names.append(contentsOf: savedNames)    
+                    names.append(contentsOf: savedNames)
                 }
                     .buttonStyle(.borderedProminent)
                     .font(.title3)
