@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var nameToAdd = ""
     @State private var pickedName = ""
     @State private var shouldRemovePickedName = false
+    @State private var savedNames : [String] = []
     
     var body: some View {
         
@@ -51,6 +52,8 @@ struct ContentView: View {
                     }
                 }
             
+           
+            
             Divider()
             
             Toggle("Remove when picked", isOn: $shouldRemovePickedName)
@@ -77,8 +80,24 @@ struct ContentView: View {
             
             .buttonStyle(.borderedProminent)
             .font(.title2)
-    
             //This initializer for Button has two closures — one for the action and one for the label. The action closure contains imperative code, and the label closure contains declarative view code.
+            
+            
+            HStack {
+                Button("Save List") {
+                    savedNames.append(contentsOf: names)
+                    names.removeAll()
+                    print(savedNames)
+                }
+                    .buttonStyle(.borderedProminent)
+                    .font(.title3)
+                Button("Load List") {
+                    names.append(contentsOf: savedNames)    
+                }
+                    .buttonStyle(.borderedProminent)
+                    .font(.title3)
+                .padding()
+            }
         }
         .padding()
      
