@@ -52,7 +52,6 @@ struct ContentView: View {
                     }
                 }
             
-           
             
             Divider()
             
@@ -96,8 +95,9 @@ struct ContentView: View {
                 }
                     .buttonStyle(.borderedProminent)
                     .font(.title3)
-                .padding()
             }
+            .padding(.top, 5)
+            .padding(.horizontal, 5)
         }
         .padding()
      
